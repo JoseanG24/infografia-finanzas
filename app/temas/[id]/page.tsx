@@ -1142,4 +1142,1308 @@ export default function TemaPage({ params }: { params: { id: string } }) {
 
             {/* Tabla de Razones de Liquidez */}
             <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
-              \
+              <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                <Image
+                  src="/razones-liquidez-tabla.png"
+                  alt="Tabla de Razones de Liquidez"
+                  width={800}
+                  height={400}
+                  className="mx-auto rounded-lg"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contenido principal - Diseño específico para razones de liquidez */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Razones de Liquidez - Razón Corriente */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-emerald-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Valores de la razón */}
+                {point.values && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Valores</h3>
+                    <ul className="space-y-3">
+                      {point.values.map((value: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{value.period}:</span> {value.value} ({value.note})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Conclusión */}
+                {point.conclusion && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Conclusión</h3>
+                    <p className="text-gray-300">{point.conclusion}</p>
+                  </div>
+                )}
+
+                {/* Fórmula */}
+                <div className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <h3 className="mb-3 text-lg font-semibold text-white">Fórmula</h3>
+                  <code className="text-emerald-300">{point.formula}</code>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Conclusión general */}
+            {tema.conclusion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-emerald-600/20 p-3">
+                    <CheckCircle className="h-8 w-8 text-emerald-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{tema.conclusion.title}</h2>
+                </div>
+
+                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                  {tema.conclusion.points.map((point: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para rotacion
+  if (params.id === "rotacion") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para rotacion */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Tabla de Índices de Rotación */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-12"
+            >
+              <div className="mb-6 flex items-center">
+                <div className="mr-4 rounded-full bg-orange-600/20 p-3">
+                  <Table className="h-8 w-8 text-orange-400" />
+                </div>
+                <h2 className="text-2xl font-bold text-white">Tabla de Índices de Rotación</h2>
+              </div>
+
+              <p className="mb-6 text-lg text-gray-300">
+                Esta tabla muestra los índices de rotación de inventarios y cuentas por cobrar a través del tiempo.
+              </p>
+
+              {/* Tabla de Índices de Rotación */}
+              <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                  <Image
+                    src="/rotacion-tabla.png"
+                    alt="Tabla de Índices de Rotación"
+                    width={800}
+                    height={200}
+                    className="mx-auto rounded-lg"
+                  />
+                </div>
+              </div>
+            </motion.div>
+            {/* Rotación de Inventario de Productos Terminados */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-orange-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Términos */}
+                {point.terms && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Términos</h3>
+                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                      {point.terms.map((term: string, i: number) => (
+                        <li key={i}>{term}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Análisis */}
+                {point.analysis && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Análisis</h3>
+                    <p className="text-gray-300">{point.analysis}</p>
+                  </div>
+                )}
+
+                {/* Fórmula */}
+                <div className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <h3 className="mb-3 text-lg font-semibold text-white">Fórmula</h3>
+                  <code className="text-orange-300">{point.formula}</code>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Imagen de fórmulas */}
+            {tema.formulasImage && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-orange-600/20 p-3">
+                    <Calculator className="h-8 w-8 text-orange-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Fórmulas</h2>
+                </div>
+
+                <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                    <Image
+                      src={tema.formulasImage || "/placeholder.svg"}
+                      alt="Fórmulas"
+                      width={800}
+                      height={400}
+                      className="mx-auto rounded-lg"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para razones-endeudamiento
+  if (params.id === "razones-endeudamiento") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Tabla de Razones de Endeudamiento */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-12"
+          >
+            <div className="mb-6 flex items-center">
+              <div className="mr-4 rounded-full bg-red-600/20 p-3">
+                <Table className="h-8 w-8 text-red-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">Tabla de Razones de Endeudamiento</h2>
+            </div>
+
+            <p className="mb-6 text-lg text-gray-300">
+              Esta tabla muestra la evolución de las razones de endeudamiento de la empresa a través del tiempo, incluyendo el grado de autonomía y la cobertura de intereses.
+            </p>
+
+            {/* Tabla de Razones de Endeudamiento */}
+            <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+              <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                <Image
+                  src="/endeudamiento-tabla.png"
+                  alt="Tabla de Razones de Endeudamiento"
+                  width={800}
+                  height={200}
+                  className="mx-auto rounded-lg"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contenido principal - Diseño específico para razones de endeudamiento */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Razones de Endeudamiento - Grado de Autonomía */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-red-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Valores de la razón */}
+                {point.values && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Valores</h3>
+                    <ul className="space-y-3">
+                      {point.values.map((value: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{value.period}:</span> {value.value} ({value.note})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Conclusión */}
+                {point.conclusion && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Conclusión</h3>
+                    <p className="text-gray-300">{point.conclusion}</p>
+                  </div>
+                )}
+
+                {/* Fórmula */}
+                <div className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <h3 className="mb-3 text-lg font-semibold text-white">Fórmula</h3>
+                  <code className="text-red-300">{point.formula}</code>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Imagen de fórmulas */}
+            {tema.formulasImage && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-red-600/20 p-3">
+                    <Calculator className="h-8 w-8 text-red-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Fórmulas</h2>
+                </div>
+
+                <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                    <Image
+                      src={tema.formulasImage || "/placeholder.svg"}
+                      alt="Fórmulas"
+                      width={800}
+                      height={400}
+                      className="mx-auto rounded-lg"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Conclusión general */}
+            {tema.conclusion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-red-600/20 p-3">
+                    <CheckCircle className="h-8 w-8 text-red-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{tema.conclusion.title}</h2>
+                </div>
+
+                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                  {tema.conclusion.points.map((point: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-red-400"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para costos-indirectos
+  if (params.id === "costos-indirectos") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para costos indirectos */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Estimación de Ventas */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div
+                    className={`mr-4 rounded-full ${point.icon.props.className.includes("violet") ? "bg-violet-600/20" : "bg-purple-600/20"} p-3`}
+                  >
+                    {point.icon}
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Valores */}
+                {point.values && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Valores</h3>
+                    <ul className="space-y-3">
+                      {point.values.map((value: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{value.product}:</span> {value.units}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Términos */}
+                {point.terms && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Términos</h3>
+                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                      {point.terms.map((term: string, i: number) => (
+                        <li key={i} className="flex items-start">
+                          <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-violet-400"></span>
+                          <span>{term}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Análisis */}
+                {point.analysis && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Análisis</h3>
+                    <ul className="space-y-3">
+                      {point.analysis.map((analysis: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{analysis.title}:</span> {analysis.content}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para costo-ventas
+  if (params.id === "costo-ventas") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para costo de ventas */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Componentes del Costo de Producción */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-amber-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Valores */}
+                {point.values && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Valores</h3>
+                    <ul className="space-y-3">
+                      {point.values.map((value: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{value.item}:</span> {value.value} ({value.note})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Cálculos */}
+                {point.calculations && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Cálculos</h3>
+                    <ul className="space-y-3">
+                      {point.calculations.map((calculation: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{calculation.title}:</span>
+                          <br />
+                          <code className="text-amber-300">{calculation.formula}</code>
+                          <br />
+                          {calculation.calculation}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Fórmula */}
+                {point.formula && (
+                  <div className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Fórmula</h3>
+                    <code className="text-amber-300">{point.formula}</code>
+                  </div>
+                )}
+
+                {/* Análisis */}
+                {point.analysis && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Análisis</h3>
+                    <p className="text-gray-300">{point.analysis}</p>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Conclusiones del Costo de Ventas */}
+            {tema.conclusion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-amber-600/20 p-3">
+                    <CheckCircle className="h-8 w-8 text-amber-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{tema.conclusion.title}</h2>
+                </div>
+
+                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                  {tema.conclusion.points.map((point: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para analisis-dupont
+  if (params.id === "analisis-dupont") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para analisis dupont */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Consolidado vs No Consolidado */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-pink-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Valores */}
+                {point.values && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Valores</h3>
+                    <ul className="space-y-3">
+                      {point.values.map((value: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{value.item}:</span> {value.value} ({value.formula})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Características */}
+                {point.characteristics && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Características</h3>
+                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                      {point.characteristics.map((characteristic: string, i: number) => (
+                        <li key={i} className="flex items-start">
+                          <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-pink-400"></span>
+                          <span>{characteristic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Imagen de fórmulas */}
+            {tema.formulasImage1 && tema.formulasImage2 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-pink-600/20 p-3">
+                    <Calculator className="h-8 w-8 text-pink-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Fórmulas</h2>
+                </div>
+
+                <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                    <Image
+                      src={tema.formulasImage1 || "/placeholder.svg"}
+                      alt="Fórmulas"
+                      width={800}
+                      height={400}
+                      className="mx-auto rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                  <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                    <Image
+                      src={tema.formulasImage2 || "/placeholder.svg"}
+                      alt="Fórmulas"
+                      width={800}
+                      height={400}
+                      className="mx-auto rounded-lg"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Conclusiones del Análisis DuPont */}
+            {tema.conclusion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-pink-600/20 p-3">
+                    <CheckCircle className="h-8 w-8 text-pink-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{tema.conclusion.title}</h2>
+                </div>
+
+                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                  {tema.conclusion.points.map((point: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-pink-400"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para apalancamiento
+  if (params.id === "apalancamiento") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para apalancamiento */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Definición General */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-sky-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Descripción */}
+                {point.description && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Descripción</h3>
+                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                      {Array.isArray(point.description) ? (
+                        point.description.map((desc: string, i: number) => (
+                          <li key={i} className="flex items-start">
+                            <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-sky-400"></span>
+                            <span>{desc}</span>
+                          </li>
+                        ))
+                      ) : (
+                        <li className="flex items-start">
+                          <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-sky-400"></span>
+                          <span>{point.description}</span>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Fórmulas */}
+                {point.formulas && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Fórmulas</h3>
+                    <ul className="space-y-3">
+                      {point.formulas.map((formula: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{formula.name}:</span> {formula.formula}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Puntos */}
+                {point.points && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Puntos</h3>
+                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                      {point.points.map((p: string, i: number) => (
+                        <li key={i} className="flex items-start">
+                          <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-sky-400"></span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Fórmula */}
+                {point.formula && (
+                  <div className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Fórmula</h3>
+                    <code className="text-sky-300">{point.formula}</code>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado para erp
+  if (params.id === "erp") {
+    return (
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+          {/* Header con navegación */}
+          <div className="bg-gray-900 py-4">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                  >
+                    <Home className="mr-1 h-4 w-4" />
+                    Inicio
+                  </Button>
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+                <span>{tema.title}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Título y descripción */}
+          <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+            <div className="mx-auto max-w-7xl px-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+              >
+                {tema.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8 text-center text-xl text-white/80"
+              >
+                {tema.description}
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño específico para ERP */}
+          <main className="mx-auto max-w-7xl px-4">
+            {/* Conceptos Básicos */}
+            {tema.keyPoints.map((point: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-lime-600/20 p-3">{point.icon}</div>
+                  <h2 className="text-2xl font-bold text-white">{point.title}</h2>
+                </div>
+
+                <p className="mb-6 text-lg text-gray-300">{point.content}</p>
+
+                {/* Puntos */}
+                {point.points && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Puntos</h3>
+                    <ul className="space-y-3">
+                      {point.points.map((p: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <span className="font-semibold">{p.title}:</span> {p.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Módulos */}
+                {point.modules && (
+                  <div className="mb-6 rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">Módulos</h3>
+                    <ul className="space-y-3">
+                      {point.modules.map((module: any, i: number) => (
+                        <li key={i} className="text-gray-300">
+                          <div className="flex items-center">
+                            <div className="mr-2">{module.icon}</div>
+                            <span className="font-semibold">{module.name}:</span> {module.description}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Conclusión General */}
+            {tema.conclusion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + tema.keyPoints.length * 0.1 }}
+                className="mb-12"
+              >
+                <div className="mb-6 flex items-center">
+                  <div className="mr-4 rounded-full bg-lime-600/20 p-3">
+                    <CheckCircle className="h-8 w-8 text-lime-400" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">{tema.conclusion.title}</h2>
+                </div>
+
+                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                  {tema.conclusion.points.map((point: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2 mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-lime-400"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Botón de regreso */}
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a todos los temas
+                </Button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </PageTransition>
+    )
+  }
+
+  // Renderizado por defecto si no coincide con ninguno de los casos específicos
+  return (
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 pb-20">
+        {/* Header con navegación */}
+        <div className="bg-gray-900 py-4">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="flex items-center gap-2 text-white/80">
+              <Link href="/">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full text-white/90 hover:bg-white/10 hover:text-white"
+                >
+                  <Home className="mr-1 h-4 w-4" />
+                  Inicio
+                </Button>
+              </Link>
+              <ChevronRight className="h-4 w-4" />
+              <span>{tema.title}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Título y descripción */}
+        <div className={`bg-gradient-to-r ${tema.color} py-8`}>
+          <div className="mx-auto max-w-7xl px-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-2 text-center text-4xl font-bold text-white md:text-5xl"
+            >
+              {tema.title}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-8 text-center text-xl text-white/80"
+            >
+              {tema.description}
+            </div>
+          </div>
+
+          {/* Contenido principal - Diseño genérico */}
+          <main className="mx-auto max-w-7xl px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-12"
+            >
+              <h2 className="mb-6 text-2xl font-bold text-white">{tema.title}</h2>
+              <p className="mb-6 text-lg text-gray-300">{tema.description}</p>
+
+            {/* Imagen principal */}
+            <div className="mb-6 overflow-hidden rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+              <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+                <Image
+                  src={tema.mainImage || "/placeholder.svg"}
+                  alt={tema.title}
+                  width={800}
+                  height={400}
+                  className="mx-auto rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Puntos clave */}
+            {tema.keyPoints && (
+              <div className="space-y-6">
+                {tema.keyPoints.map((point: any, index: number) => (
+                  <div key={index} className="rounded-lg bg-gray-800/30 p-5 backdrop-blur-sm">
+                    <h3 className="mb-3 text-lg font-semibold text-white">{point.title}</h3>
+                    <p className="text-gray-300">{point.content}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            </motion.div>
+
+          {/* Botón de regreso */}
+          <div className="mt-12 text-center">
+            <Link href="/">
+              <Button variant="outline" size="lg" className="rounded-full">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Volver a todos los temas
+              </Button>
+            </Link>
+          </div>
+        </main>
+      </div>
+    </PageTransition>
+  )
+}
