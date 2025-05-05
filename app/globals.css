@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 270 95% 75%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 270 80% 50%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 270 95% 75%;
+  --radius: 0.5rem;
+
+  /* Colores para las líneas de conexión */
+  --purple-600: 262 83% 58%;
+  --indigo-600: 226 70% 55.5%;
+  --blue-600: 221 83% 53%;
+  --cyan-600: 192 91% 36.5%;
+  --emerald-600: 161 94% 30%;
+  --teal-600: 172 66% 30%;
+  --orange-600: 31 90% 48%;
+  --amber-600: 38 92% 50%;
+  --red-600: 0 91% 58%;
+  --rose-600: 339 90% 51%;
+  --pink-600: 326 78% 60%;
+  --violet-600: 262 83% 58%;
+  --sky-600: 200 98% 39%;
+  --lime-600: 86 78% 37%;
+  --green-600: 142 71% 45%;
+  --yellow-600: 48 96% 53%;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+.formula {
+  @apply my-4 overflow-x-auto rounded-lg bg-gray-800/50 p-4;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 15, 15, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 90, 213, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 90, 213, 0.8);
+}
+
+/* Add these lines to the end of the file */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+#page-transitions {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
